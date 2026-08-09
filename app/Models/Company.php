@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class Company extends Model
 {
     use SoftDeletes;
 
-    public function company()
+    public function users()
     {
-        return $this->belongsTo(Company::class, 'id_company');
+        return $this->hasMany(User::class, 'id_company');
     }
 }

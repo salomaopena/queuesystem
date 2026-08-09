@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class QueueTicket extends Model
 {
     use SoftDeletes;
 
-    public function company()
+    public function queue()
     {
-        return $this->belongsTo(Company::class, 'id_company');
+        return $this->belongsTo(Queue::class, 'id_queue');
     }
 }

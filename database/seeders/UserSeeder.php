@@ -24,14 +24,14 @@ class UserSeeder extends Seeder
                 'active' => true,
             ],
             [
-                'email' => 'admin@localhost.com',
+                'email' => 'admin1@localhost.com',
                 'password' => bcrypt('MinhaSenha123'),
                 'id_company' => 1,
                 'role' => 'client-admin',
                 'active' => true,
             ],
             [
-                'email' => 'client@localhost.com',
+                'email' => 'admin2@localhost.com',
                 'password' => bcrypt('MinhaSenha123'),
                 'id_company' => 2,
                 'role' => 'client-admin',

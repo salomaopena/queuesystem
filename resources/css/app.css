@@ -1,9 +1,62 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+@source "../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php";
+@source "../../storage/framework/views/*.php";
+@source "../**/*.blade.php";
+@source "../**/*.js";
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@layer components {
+
+    /* Main card */
+    .main-card {
+        @apply rounded-xl border border-zinc-300 bg-white p-10 text-zinc-500 shadow-sm;
+    }
+
+    /* Titles */
+    .title-1 {
+        @apply text-2xl font-bold text-zinc-900;
+    }
+
+    .title-2 {
+        @apply text-xl font-semibold text-zinc-700;
+    }
+
+    .title-3 {
+        @apply text-lg font-medium text-zinc-600;
+    }
+
+    hr {
+        @apply border-zinc-300;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply cursor-pointer rounded-lg bg-zinc-800 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-600;
+    }
+
+    .btn-white {
+        @apply cursor-pointer rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 hover:bg-zinc-100;
+    }
+
+    .btn-red {
+        @apply cursor-pointer rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-500;
+    }
+
+    /* Inputs */
+    .label {
+        @apply mb-2 block text-zinc-600;
+    }
+
+    .input {
+        @apply rounded-lg border border-zinc-400 p-2 focus:outline-none focus:ring-2 focus:ring-zinc-500;
+    }
+
+    .checkbox,
+    .radio {
+        @apply h-4 w-4 rounded-full accent-black focus:ring-zinc-500;
+    }
+
+    .link {
+        @apply text-zinc-700 underline hover:text-blue-500;
+    }
 }

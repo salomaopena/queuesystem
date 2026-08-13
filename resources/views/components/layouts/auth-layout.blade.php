@@ -8,6 +8,15 @@
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" type="image/x-icon">
     {{-- ler recursos | fontawesome --}}
     <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+
+    {{-- datatables--}}
+    <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">
+    <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
+
+    {{-- coloris --}}
+    <link rel="stylesheet" href="{{ asset('assets/coloris/coloris.min.css') }}">
+    <script src="{{ asset('assets/coloris/coloris.min.js') }}"></script>
+
     @vite('resources/css/app.css')
     {{-- ler recursos | bootstrap --}}
 </head>
@@ -18,7 +27,7 @@
 
     {{-- main horizontal menu --}}
     <x-layouts.main_menu />
-    
+
     {{-- main content --}}
     <div class="p-8">
         {{ $slot }}

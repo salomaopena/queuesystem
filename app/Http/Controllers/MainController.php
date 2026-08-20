@@ -29,29 +29,30 @@ class MainController extends Controller
     private function getUserQueues()
     {
         $companyId = Auth::user()->id_company;
-        return Queue::where('id_company', $companyId)
-            // ->where('status', 'active')
-            // ->whereNull('deleted_at')
+        return Queue::withTrashed()
+            ->where('id_company', $companyId)
+            /* ->where('status', 'active')
+            ->whereNull('deleted_at')*/
             ->withCount([
                 'tickets as total_tickets' => function ($query) {
                     $query->whereNotnull('queue_ticket_status')
-                        ->whereNull('deleted_at');
+                        /* ->whereNull('deleted_at')*/ ;
                 },
                 'tickets as total_dismissed' => function ($query) {
                     $query->where('queue_ticket_status', 'dismissed')
-                        ->whereNull('deleted_at');
+                        /*->whereNull('deleted_at')*/ ;
                 },
                 'tickets as total_not_attended' => function ($query) {
                     $query->where('queue_ticket_status', 'not_attended')
-                        ->whereNull('deleted_at');
+                        /*->whereNull('deleted_at')*/ ;
                 },
                 'tickets as total_called' => function ($query) {
                     $query->where('queue_ticket_status', 'called')
-                        ->whereNull('deleted_at');
+                        /*->whereNull('deleted_at')*/ ;
                 },
                 'tickets as total_waiting' => function ($query) {
                     $query->where('queue_ticket_status', 'waiting')
-                        ->whereNull('deleted_at');
+                        /*->whereNull('deleted_at')*/ ;
                 },
             ])->get();
     }
@@ -509,5 +510,28 @@ class MainController extends Controller
 
         $queue->delete();
         return redirect()->route('dashboard')->with(['message' => 'Fila eliminada com sucesso.']);
+    }
+
+    public function restoreQueue($id)
+    {
+        try {
+            $id = Crypt::decrypt($id);
+        } catch (\Exception $e) {
+            abort(403, 'ID de fila inválido...');
+        }
+
+        // Verificar se a fila existe e se pertence ao usuário logado
+        $companyId = Auth::user()->id_company;
+        $queue = Queue::withTrashed()
+            ->where('id', $id)->where('id_company', $companyId)->firstOrFail();
+
+        if (!$queue) {
+            abort(403, 'Fila não encontrada...');
+        }
+
+        // Restaurar a fila excluída
+        $queue->restore();
+        return redirect()->route('dashboard')->with('message', 'Fila restaura com sucesso');
+
     }
 }

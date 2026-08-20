@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('bundles', function (Blueprint $table) {
+            $table->id();
+            $table->integer('id_company')->default(0);
+            $table->string('name', 100);
+            $table->json('queues')->nullable()->default(null);
+            $table->string('credential_username', 50)->nullable()->nullable();
+            $table->string('credential_password', 255)->nullable()->nullable();
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->dateTime('deleted_at')->nullable()->default(null);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('bundles');
+    }
+};

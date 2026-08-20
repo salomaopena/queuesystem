@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BundlesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
 
@@ -21,6 +22,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/dashboard', [MainController::class, 'index'])->name('dashboard');
 
+
+    /**
+     * =================================================================================
+     * =======================================QUEUES====================================
+     * =================================================================================
+     */
+
     Route::get('/queue/create', [MainController::class, 'createQueue'])->name('queue.create');
     Route::post('/queue/create', [MainController::class, 'createQueueSubmit'])->name('queue.create.submit');
     Route::get('/queue/generate-hash', [MainController::class, 'genarateQueueHash'])->name('queue.generate.hash');
@@ -34,8 +42,25 @@ Route::middleware(['auth'])->group(function () {
     Route::get('queue/delete/{id}', [MainController::class, 'deleteQueue'])->name('queue.delete');
     Route::get('queue/delete/confirm/{id}', [MainController::class, 'deleteQueueConfirm'])->name('queue.delete.confirm');
 
+    Route::get('queue/restore/{id}', [MainController::class, 'restoreQueue'])->name('queue.restore');
+
     Route::get('/queue/{id}', [MainController::class, 'queueDetails'])->name('queue.details');
 
+    /**
+     * =================================================================================
+     * =======================================BUNDLES===================================
+     * =================================================================================
+     */
+
+    Route::get('bundles', [BundlesController::class, 'index'])->name('bundles.home');
+    Route::get('bundle/create', [BundlesController::class, 'createBundle'])->name('bundle.create');
+    Route::post('bundle/create', [BundlesController::class, 'createBundleSubmit'])->name('bundle.create.submit');
+
+    /**
+     * =================================================================================
+     * =======================================USERS=====================================
+     * =================================================================================
+     */
     Route::get('/change-password', [AuthController::class, 'changePassword'])->name('change.password');
     Route::post('/change-password', [AuthController::class, 'changePasswordSubmit'])->name('change.password.submit');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

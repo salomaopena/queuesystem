@@ -492,7 +492,7 @@ class MainController extends Controller
         return view('main.queue_delete', $data);
     }
 
-    public function deleteQueueConfirm($id)
+    public function deleteQueueConfirm(string $id)
     {
         try {
             $id = Crypt::decrypt($id);
@@ -512,7 +512,7 @@ class MainController extends Controller
         return redirect()->route('dashboard')->with(['message' => 'Fila eliminada com sucesso.']);
     }
 
-    public function restoreQueue($id)
+    public function restoreQueue(string $id)
     {
         try {
             $id = Crypt::decrypt($id);

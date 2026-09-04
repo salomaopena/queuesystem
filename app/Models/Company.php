@@ -13,4 +13,14 @@ class Company extends Model
     {
         return $this->hasMany(User::class, 'id_company');
     }
+
+    public function queues()
+    {
+        return $this->hasMany(Queue::class, 'id_company');
+    }
+
+    public function bundles()
+    {
+        return $this->hasMany(Bundle::class, 'id_company');
+    }
 }

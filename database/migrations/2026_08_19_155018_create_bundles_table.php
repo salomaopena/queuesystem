@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->integer('id_company')->default(0);
             $table->string('name', 100);
             $table->json('queues')->nullable()->default(null);
-            $table->string('credential_username', 50)->nullable()->nullable();
+            $table->string('credential_username', 64)->nullable()->nullable();
             $table->string('credential_password', 255)->nullable()->nullable();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();

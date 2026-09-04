@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('bundles', [BundlesController::class, 'index'])->name('bundles.home');
     Route::get('bundle/create', [BundlesController::class, 'createBundle'])->name('bundle.create');
     Route::post('bundle/create', [BundlesController::class, 'createBundleSubmit'])->name('bundle.create.submit');
+    Route::get('bundles/generate-credential-value/{num_chars}', [BundlesController::class, 'generateCredentialValue'])->name('bundle.generate.credential.value');
 
     /**
      * =================================================================================

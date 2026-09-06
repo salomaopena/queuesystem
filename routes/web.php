@@ -56,7 +56,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('bundle/create', [BundlesController::class, 'createBundle'])->name('bundle.create');
     Route::post('bundle/create', [BundlesController::class, 'createBundleSubmit'])->name('bundle.create.submit');
     Route::get('bundles/generate-credential-value/{num_chars}', [BundlesController::class, 'generateCredentialValue'])->name('bundle.generate.credential.value');
+    Route::get('bundle/edit/{id}', [BundlesController::class, 'editBundle'])->name('bundle.edit');
+    Route::post('bundle/edit/submit', [BundlesController::class, 'editBundleSubmit'])->name('bundle.edit.submit');
+    Route::get('bundle/delete/{id}', [BundlesController::class, 'deleteBundle'])->name('bundle.delete');
+    Route::get('bundle/delete/confirm/{id}', [BundlesController::class, 'deleteBundleConfirm'])->name('bundle.delete.confirm');
+    Route::get('bundle/restore/{id}', [BundlesController::class, 'restoreBundle'])->name('bundle.restore');
 
+    
     /**
      * =================================================================================
      * =======================================USERS=====================================

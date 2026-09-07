@@ -57,8 +57,18 @@ class BundlesController extends Controller
             json_decode($request->queue_list, true) === null ||
             empty(json_decode($request->queue_list, true))
         ) {
-            return redirect()->back()
+            return redirect()
+                ->back()
                 ->withErrors(['queue_list' => 'A lista de filas é obrigatória e deve ser um array.'])
+                ->withInput();
+        }
+
+        // Verificar se a queue_list tem menos de 1 fila e no máximo 8 filas
+        $temp = json_decode($request->queue_list, true);
+        if (count($temp) < env('MIN_QUEUE_LIST_SIZE', 1) || count($temp) > env('MAX_QUEUE_LIST_SIZE', 8)) {
+            return redirect()
+                ->back()
+                ->withErrors(['queue_list' => 'A lista de filas deve conter entre ' . env('MIN_QUEUE_LIST_SIZE', 1) . ' e ' . env('MAX_QUEUE_LIST_SIZE', 8) . ' filas.'])
                 ->withInput();
         }
 
@@ -187,6 +197,15 @@ class BundlesController extends Controller
         ) {
             return redirect()->back()
                 ->withErrors(['queue_list' => 'A lista de filas é obrigatória e deve ser um array.'])
+                ->withInput();
+        }
+
+        // Verificar se a queue_list tem menos de 1 fila e no máximo 8 filas
+        $temp = json_decode($request->queue_list, true);
+        if (count($temp) < env('MIN_QUEUE_LIST_SIZE', 1) || count($temp) > env('MAX_QUEUE_LIST_SIZE', 8)) {
+            return redirect()
+                ->back()
+                ->withErrors(['queue_list' => 'A lista de filas deve conter entre ' . env('MIN_QUEUE_LIST_SIZE', 1) . ' e ' . env('MAX_QUEUE_LIST_SIZE', 8) . ' filas.'])
                 ->withInput();
         }
 
@@ -342,6 +361,4 @@ class BundlesController extends Controller
             ->route('bundles.home')
             ->with('success', 'Bundle restaurado com sucesso!');
     }
-
-    
 }

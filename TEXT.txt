@@ -1,0 +1,23 @@
+   INFO  Seeding database.  
+
+Filas criadas com sucesso! Lista de hash_codes
+s0cOATkJmvAul5Q773gEpVKvYLXuFLhxukbb8oPwq8hTTWSTmt5vJ2W06Qw3qka2
+oDJP2tPhdhMuJNYXBCmRYA3hYFRZWW7ZAXj0FQz87GUXvJ0WhIdGDoqJdBOQvlPr
+m81iTo0ErBFLRs5ZZVx3iuzMOYJYmgXSMy4HOwizJkw28sKmYPfjGN6JVfTV90WO
+OYnf7OCqq6NxMZKd6dSHdjSQagwxWuDBHs7qixwahS6C5zdf75rocEQU5Q01OyoF
+Av0U0fm4N0liQI9U8TxG5VahDOTSEELL23pijWEtR7xZH6wqsFylKsV9cw7AIJqs
+3Uae0rv3uRWiPsk3VvLcekX002q36zB9Flvd4wTpctBhEDxYiGT0mQWkw5oG4amx
+
+Bundles criados com sucesso! Lista de credenciais
+Bundle name: Filas de espera 01
+Crendencial username: b2DYfzKHRpqDeh2Yjz0GOfrjrVWLABhzNMuTEZiU0VAZtZEm3Nf6e37K8UCmqdvp
+Credencial password: a6hEGLtJdx4zih3IrqQRV3KuEjAUVQqOseWoCzbYyKnGWyR1wQyvJffUuc2UctEu
+----------------------------------------
+Bundle name: Filas de espera 02
+Crendencial username: hwABPk9AwOOwys0uEFK1KHoItaWAIRsPISyu627M0qgKNkJWLAmWxCy9yzE0WhoE
+Credencial password: OegCfC6iUH1gDosJveQETp2yu2a0Jm6emvM8WKGoXRUnflt9iheyUVnGtKmdVP24
+----------------------------------------
+Bundle name: Filas de espera 03
+Crendencial username: 9MCfyjh6qGLDMUfaj8ZpjFWwAcqc2wAwwL2WOSlH4j3VTYJtfGFH87io7kBXaNVL
+Credencial password: IiEqFqVIpkYQv7ZRObqz7VnbxnZnnKGdtMJt8YHNoe7ufxaIgV2aPNDzZlCfI66s
+----------------------------------------

@@ -22,7 +22,7 @@
                         <label for="bundle_name" class="label">Nome do bundle</label>
                         <input type="text" id="bundle_name" name="bundle_name" class="input w-full"
                             placeholder="Nome do bundle" value="{{ old('bundle_name') }}">
-                            {!! showValidationErrors('bundle_name', $errors) !!}
+                        {!! showValidationErrors('bundle_name', $errors) !!}
                     </div>
 
                     <div class="flex justify-between gap-4">
@@ -65,41 +65,41 @@
             <div class="w-full">
                 <p class="text-slate-600 font-bold">Filas de espera</p>
                 @if($queues->isEmpty())
-                    <p class="text-slate-400 text-center mt-12"> Não existem filas de espera</p>
+                <p class="text-slate-400 text-center mt-12"> Não existem filas de espera</p>
                 @else
-                    <table id="table-queue" class="responsive">
-                        <thead class="bg-black text-white">
-                            <tr>
-                                <th></th>
-                                <th>Nome</th>
-                                <th>Seviço</th>
-                                <th>Balcão</th>
-                                <th>Estado</th>
-                                <th>previsualização</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($queues as $queue)
-                                <tr>
-                                    <td> <button type="button" class="btn" id="btn_queue"
-                                            data-queue-hash-code="{{ $queue->hash_code }}" data-queue-name="{{ $queue->name }}">
-                                            <i class="fa-solid fa-circle-plus"></i> </button>
-                                    </td>
-                                    <td>{{ $queue->name }}</td>
-                                    <td>{{ $queue->sevice_name }}</td>
-                                    <td>{{ $queue->service_desk }}</td>
-                                    <td>
-                                        <span class="me-2">{!! getQueueStateIcon($queue->status) !!}</span>
-                                        {{ getQueueStateText($queue->status) }}
-                                    </td>
-                                    <td>
-                                        {!! getQueuePreview($queue) !!}
+                <table id="table-queue" class="responsive">
+                    <thead class="bg-black text-white">
+                        <tr>
+                            <th></th>
+                            <th>Nome</th>
+                            <th>Seviço</th>
+                            <th>Balcão</th>
+                            <th>Estado</th>
+                            <th>previsualização</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($queues as $queue)
+                        <tr>
+                            <td> <button type="button" class="btn" id="btn_queue"
+                                    data-queue-hash-code="{{ $queue->hash_code }}" data-queue-name="{{ $queue->name }}">
+                                    <i class="fa-solid fa-circle-plus"></i> </button>
+                            </td>
+                            <td>{{ $queue->name }}</td>
+                            <td>{{ $queue->sevice_name }}</td>
+                            <td>{{ $queue->service_desk }}</td>
+                            <td>
+                                <span class="me-2">{!! getQueueStateIcon($queue->status) !!}</span>
+                                {{ getQueueStateText($queue->status) }}
+                            </td>
+                            <td>
+                                {!! getQueuePreview($queue) !!}
 
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 @endif
             </div>
 
@@ -123,7 +123,7 @@
         renderQueues(queues);
 
         document.querySelectorAll("#btn_queue").forEach(button => {
-            button.addEventListener('click', function () {
+            button.addEventListener('click', function() {
                 const queueHashCode = this.getAttribute('data-queue-hash-code');
                 const queueName = this.getAttribute('data-queue-name');
 
@@ -132,6 +132,18 @@
                 if (queues.some(queue => queue.hash_code === queueHashCode)) {
                     queues = queues.filter(queue => queue.hash_code !== queueHashCode)
                 } else {
+
+                    // verificar ses o limite de fila foi atingido
+                    // if (queues.length >= {{ env('MAX_QUEUE_LIST_SIZE', 8) }}) {
+                    //     alert('O limite de filas foi atingido. Remova uma fila antes de adicionar outra.');
+                    //     return;
+                    // }
+
+                    if(queues.length == 8){
+                        alert('O limite de filas foi atingido. Remova uma fila antes de adicionar outra.');
+                        return;
+                    }
+
                     queues.push({
                         hash_code: queueHashCode,
                         name: queueName
@@ -178,7 +190,7 @@
 
         // gerar credencial
 
-        document.querySelector('#btn_generate_credencial_username').addEventListener('click', function () {
+        document.querySelector('#btn_generate_credencial_username').addEventListener('click', function() {
             fetch("{{ route('bundle.generate.credential.value', ['num_chars' => 64]) }}")
                 .then(response => response.json())
                 .then(data => {
@@ -186,7 +198,7 @@
                 }).catch(error => console.log('Error: ', error));
         });
 
-        document.querySelector('#btn_generate_credencial_password').addEventListener('click', function () {
+        document.querySelector('#btn_generate_credencial_password').addEventListener('click', function() {
             fetch("{{ route('bundle.generate.credential.value', ['num_chars' => 64]) }}")
                 .then(response => response.json())
                 .then(data => {

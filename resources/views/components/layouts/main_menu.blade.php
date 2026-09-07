@@ -4,6 +4,7 @@
 
         <a href="{{ route('dashboard') }}" class="btn-white"> <i class="fa-solid fa-house me-2"></i> Gestão de filas</a>
         <a href="{{ route('bundles.home') }}" class="btn-white"> <i class="fa-solid fa-table-list me-2"></i> Gestão de bundles</a>
+        <a href="{{ route('dispenser') }}" target="_blank" class="btn-white"> <i class="fa-solid fa-ticket me-2"></i> Dispensador</a>
 
     </div>
 

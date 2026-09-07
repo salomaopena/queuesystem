@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Middleware\TicketDispenserSession;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BundlesController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\TicketDispenserController;
 
 
 Route::middleware(['guest'])->group(function () {
@@ -72,3 +74,20 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/change-password', [AuthController::class, 'changePasswordSubmit'])->name('change.password.submit');
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
+
+
+// Dispensador de senhas
+Route::middleware([TicketDispenserSession::class])->group(function () {
+    Route::get('/dispenser', [TicketDispenserController::class, 'index'])->name('dispenser');
+});
+
+Route::get('/dispenser/credentials', [TicketDispenserController::class, 'credentials'])->name('dispenser.credentials');
+Route::post('/dispenser/credentials', [TicketDispenserController::class, 'credentialsSubmit'])->name('dispenser.credentials.submit');
+
+Route::get('dispenser/add-credential', function(){
+    session()->put('ticket_dispenser_credential', 'Temporary Credential');
+})->name('dispenser.add.credential');
+
+Route::get('dispenser/remove-credential', function(){
+    session()->forget('ticket_dispenser_credential');
+})->name('dispenser.remove.credential');

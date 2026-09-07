@@ -114,6 +114,11 @@
                 if (queues.some(queue => queue.hash_code === queueHashCode)) {
                     queues = queues.filter(queue => queue.hash_code !== queueHashCode)
                 } else {
+                    if (queues.length == 8) {
+                        alert('O limite de filas foi atingido. Remova uma fila antes de adicionar outra.');
+                        return;
+                    }
+
                     queues.push({
                         hash_code: queueHashCode,
                         name: queueName
